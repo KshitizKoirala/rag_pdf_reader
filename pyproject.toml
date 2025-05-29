@@ -1,0 +1,62 @@
+[project]
+name = "pdf-reader"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "kshitizkoirala",email = "kshitizkoirala01@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi[standard] (>=0.115.12,<0.116.0)"
+]
+
+[tool.poetry]
+packages = [{include = "app"}]
+
+[tool.poetry.scripts]
+start_dev = "app.main:start_dev"
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.11.11"
+pre-commit = "^4.2.0"
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+fix = true
+
+# Enable Ruff's formatter
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"
+
+# Enable commonly used rulesets
+[tool.ruff.lint]
+select = [
+  "E",    # pycodestyle (errors)
+  "F",    # pyflakes
+  "I",    # isort
+  "UP",   # pyupgrade
+  "B",    # flake8-bugbear
+  "C90",  # mccabe complexity
+  "N",    # pep8-naming
+  "PL",   # pylint rules
+  "RUF",  # Ruff-specific rules
+]
+ignore = [
+  "E501",  # Line too long (ruff formatter will handle this)
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["app"]  # adjust if your internal modules are named differently
+force-single-line = false
+lines-between-types = 1
+combine-as-imports = true
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
