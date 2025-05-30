@@ -1,26 +1,21 @@
-[project]
+[tool.poetry]
 name = "pdf-reader"
 version = "0.1.0"
-description = ""
-authors = [
-    {name = "kshitizkoirala",email = "kshitizkoirala01@gmail.com"}
-]
+description = "A FastAPI PDF Reader with Q&A"
+authors = ["kshitizkoirala <kshitizkoirala01@gmail.com>"]
 readme = "README.md"
-requires-python = ">=3.13"
-dependencies = [
-    "fastapi[standard] (>=0.115.12,<0.116.0)"
-]
-
-[tool.poetry]
 packages = [{include = "app"}]
 
-[tool.poetry.scripts]
-start_dev = "app.main:start_dev"
+[tool.poetry.dependencies]
+python = ">=3.12"
+fastapi = {extras = ["standard"], version = ">=0.115.12,<0.116.0"}
+sentence-transformers = ">=4.1.0,<5.0.0"
 
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.11.11"
 pre-commit = "^4.2.0"
+
 
 [tool.ruff]
 line-length = 88
@@ -36,22 +31,22 @@ line-ending = "lf"
 # Enable commonly used rulesets
 [tool.ruff.lint]
 select = [
-  "E",    # pycodestyle (errors)
-  "F",    # pyflakes
-  "I",    # isort
-  "UP",   # pyupgrade
-  "B",    # flake8-bugbear
-  "C90",  # mccabe complexity
-  "N",    # pep8-naming
-  "PL",   # pylint rules
-  "RUF",  # Ruff-specific rules
+  "E",    # pycodestyle errors => Style errors like indentation, whitespace
+  "F",    # pyflakes => Basic error detection like undefined names
+  "I",    # isort => Import sorting issues
+  "UP",   # pyupgrade => Checks for outdated Python syntax and suggests upgrades
+  "B",    # flake8-bugbear => Checks for likely bugs and design problems
+  "C90",  # mccabe complexity => Measures the cyclomatic complexity of functions
+  "N",    # pep8-naming => Naming convention checks
+  "PL",   # pylint rules => Pylint-like linting rules (subset)
+  "RUF",  # Ruff-specific rules => Custom Ruff checks
 ]
 ignore = [
   "E501",  # Line too long (ruff formatter will handle this)
 ]
 
 [tool.ruff.lint.isort]
-known-first-party = ["app"]  # adjust if your internal modules are named differently
+known-first-party = ["app"]
 force-single-line = false
 lines-between-types = 1
 combine-as-imports = true

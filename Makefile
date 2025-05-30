@@ -5,7 +5,7 @@ LOG_CONFIG=config/log_config.yml
 APP_PATH=app.main:app
 
 dev:
-	poetry run uvicorn $(APP_PATH) --reload --log-config $(LOG_CONFIG)
+	poetry run uvicorn $(APP_PATH) --host 0.0.0.0 --port 8000 --reload --log-config $(LOG_CONFIG)
 
 prod:
 	poetry run uvicorn $(APP_PATH) --host 0.0.0.0 --port 8000 --log-config $(LOG_CONFIG)
