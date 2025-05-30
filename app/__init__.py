@@ -8,6 +8,9 @@ import yaml
 from dotenv import find_dotenv, load_dotenv
 from fastapi import FastAPI
 
+from app.auth import auth_router
+from app.pdf import pdf_router
+
 load_dotenv(find_dotenv())
 
 
@@ -32,5 +35,8 @@ setup_logging()
 
 def create_app():
     app = FastAPI()
+
+    app.include_router(auth_router())
+    app.include_router(pdf_router())
 
     return app

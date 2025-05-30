@@ -2,6 +2,5 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.ruff": "explicit"
   },
-  "editor.formatOnSave": true,
-
+  "editor.formatOnSave": true
 }

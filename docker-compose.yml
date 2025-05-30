@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pdf_reader
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    # depends_on:
+    #   - qdrant
+    command: ["make", "dev"]
+
+  # qdrant:
+  #   image: qdrant/qdrant
+  #   container_name: qdrant
+  #   ports:
+  #     - "6333:6333"     # REST API
+  #     - "6334:6334"     # gRPC API
+  #   volumes:
+  #     - qdrant_data:/qdrant/storage
+# volumes:
+#   qdrant_data:
