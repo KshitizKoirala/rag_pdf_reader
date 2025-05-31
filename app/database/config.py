@@ -1,8 +1,10 @@
 from qdrant_client import QdrantClient
 from qdrant_client.http.models import Distance, VectorParams
 
+from app.config import qdrant_host, qdrant_port
+
 # Initialize the Qdrant client and model
-qdrant_client = QdrantClient(host="localhost", port=6333)
+qdrant_client = QdrantClient(host=qdrant_host, port=qdrant_port)
 
 COLLECTION_NAME = "pdf_chunks"
 

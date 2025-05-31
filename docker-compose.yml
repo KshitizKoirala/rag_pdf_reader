@@ -1,18 +1,4 @@
 services:
-  # app:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #   container_name: pdf_reader
-  #   volumes:
-  #     - .:/app
-  #     - /app/.venv
-  #   ports:
-  #     - "8000:8000"
-  #   # depends_on:
-  #   #   - qdrant
-  #   command: ["make", "dev"]
-
   qdrant:
     image: qdrant/qdrant
     container_name: qdrant
@@ -20,6 +6,41 @@ services:
       - "6333:6333"
     volumes:
       - qdrant_data:/qdrant/storage
+    networks:
+      - backend
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pdf_reader
+    volumes:
+      - .:/app
+      - /app/.venv
+    ports:
+      - "8000:8000"
+    networks:
+      - backend
+    depends_on:
+      - qdrant
+    environment:
+      QDRANT_HOST: qdrant
+      QDRANT_PORT: 6333
+    command: ["make", "dev"]
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: streamlit_frontend
+    ports:
+      - "8501:8501"
+    networks:
+      - backend
+    depends_on:
+      - app
 
 volumes:
   qdrant_data:
+networks:
+  backend:
