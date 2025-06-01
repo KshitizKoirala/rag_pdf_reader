@@ -34,4 +34,6 @@ class PdfService:
         for answer in filtered_answers:
             combined_answer += answer["text"] + " "
         combined_answer = combined_answer.strip()
+        if not combined_answer:
+            return {"status": 200, "detail": "No match found for the query."}
         return combined_answer
