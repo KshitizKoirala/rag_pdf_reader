@@ -114,6 +114,10 @@ curl -X 'GET' \
 
 As the application evolves, several improvements can be made to enhance its functionality, performance, and scalability:
 
+- [ ] **Offload PDF embedding to worker threads**:
+
+  - Currently, the app blocks the min thread. Since this is only for a small document of 10 pages, it works fine. Future improvements could include adding celery and asyncio to offload the pdf embedding task to a worker thread which would make it faster without blocking the main thread.
+
 - [ ] **Support for Multiple Document Formats**:
 
   - Currently, the app only supports PDF uploads. Future improvements could include support for other document formats such as Word, PowerPoint, or HTML. This would require additional text extraction modules or libraries.
