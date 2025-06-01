@@ -16,10 +16,11 @@ class PdfRepository:
         for i in range(0, len(points), batch_size):
             batch = points[i:i+batch_size]
             qdrant_client.upsert(collection_name=COLLECTION_NAME, points=batch)
-        # qdrant_client.upsert(collection_name=COLLECTION_NAME, points=points)
-        print(f"✅ Inserted {len(points)} points into '{COLLECTION_NAME}'")
 
-    def search_similar(self, query_vector, top_k: int = 10):
+        print(f"✅ Inserted {len(points)} points into '{COLLECTION_NAME}'")
+        return True
+
+    def search_similar(self, query_vector: list[float], top_k: int = 10):
         results = qdrant_client.search(
             collection_name=COLLECTION_NAME,
             query_vector=query_vector,

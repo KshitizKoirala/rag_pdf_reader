@@ -15,18 +15,6 @@ if not API_KEY:
 
 st.markdown("---")
 
-uploaded_file = st.file_uploader("Upload a PDF", type=["pdf"])
-if uploaded_file:
-    st.info("Uploading...")
-    res = requests.post(
-        f"{API_URL}/upload/",
-        headers={"x-api-key": API_KEY},
-        files={"file": uploaded_file.read()}
-    )
-    st.success(res.json()["status"])
-
-st.markdown("---")
-
 question = st.text_input("Ask a question about the uploaded PDF:")
 
 if st.button("Submit Question") and question:
@@ -37,5 +25,4 @@ if st.button("Submit Question") and question:
     )
     response = res.json()
     st.subheader("Answer")
-    for ans in response:
-        st.write(ans)
+    st.write(response)
