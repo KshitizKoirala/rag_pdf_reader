@@ -10,6 +10,11 @@ This application allows users to upload PDF documents, extract the text from the
 docker compose up --build
 ```
 
+
+To create a new API key you can login to the app directly and a new key will be created. Else you can use this key directly 
+"nW87klK-lAD3oaAzsCxfrxs8pc4tG6nmqdQGMgPBZJM="
+
+
 ## Architecture
 
 The architecture of the application follows a simple yet scalable design that separates the concerns of the frontend, backend, and the vector database. Here's a high-level overview of the architecture:
