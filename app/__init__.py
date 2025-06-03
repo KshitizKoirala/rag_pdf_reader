@@ -11,6 +11,7 @@ from fastapi import FastAPI
 from sentence_transformers import SentenceTransformer
 
 from app.auth import auth_router
+from app.database.config import create_collection
 from app.pdf import pdf_router
 
 load_dotenv(find_dotenv())
@@ -34,8 +35,9 @@ def setup_logging():
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     print("Loading model...")
-    app.state.model = SentenceTransformer('multi-qa-mpnet-base-dot-v1')
+    app.state.model = SentenceTransformer('models/mpnet-dot')
     print("Model loaded.")
+    create_collection()
     try:
         yield
     finally:

@@ -63,13 +63,3 @@ async def test_rejects_bad_api_key(mocked_app):
         headers = {"x-api-key": "wrong-key"}
         response = await client.post("/pdf/upload", files=files, headers=headers)
     assert response.status_code == status.HTTP_403_FORBIDDEN
-
-
-# @pytest.mark.asyncio
-# async def test_pdf_upload(mocked_app_with_api_key):
-#     transport = ASGITransport(app=mocked_app_with_api_key)
-#     async with AsyncClient(transport=transport, base_url=base_url + "/api") as client:
-#         files = {"file": ("test.pdf", b"%PDF-1.4...", "application/pdf")}
-#         response = await client.post("/pdf/upload", files=files, headers=headers)
-#     assert response.status_code == status.HTTP_200_OK
-#     assert "document_id" in response.json()

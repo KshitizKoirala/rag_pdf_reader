@@ -16,7 +16,6 @@ def validate_api_key(api_key: str = Security(api_key_header)):
         )
 
     email = get_email_from_api_key(api_key)
-    print("email", email)
     if not email:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,

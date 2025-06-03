@@ -6,6 +6,10 @@ authors = ["kshitizkoirala <kshitizkoirala01@gmail.com>"]
 readme = "README.md"
 packages = [{include = "app"}]
 
+[tool.poetry.scripts]
+save-model = "app.cli.model:save_model"
+reset-model = "app.cli.model:reset_db"
+
 [tool.poetry.dependencies]
 python = ">=3.12"
 fastapi = {extras = ["standard"], version = ">=0.115.12,<0.116.0"}
@@ -13,6 +17,8 @@ sentence-transformers = ">=4.1.0,<5.0.0"
 pymupdf = "^1.26.0"
 qdrant-client = "^1.14.2"
 streamlit = "^1.45.1"
+nltk = "^3.9.1"
+tiktoken = "^0.9.0"
 
 
 [tool.poetry.group.dev.dependencies]

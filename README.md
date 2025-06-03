@@ -13,7 +13,17 @@ docker compose up --build
 To create a new API key you can login to the app directly and a new key will be created. Else you can use this key directly
 "nW87klK-lAD3oaAzsCxfrxs8pc4tG6nmqdQGMgPBZJM="
 
-> If you want to ask questions directly -> http://localhost:8501/
+[You must remember the password for your email, as only one email can be used for an API-KEY]
+
+> If you want to ask questions directly [Client] -> http://localhost:8501/
+
+#### To upload the questions and view the Swagger Docs
+
+> http://localhost:8501/docs
+
+```
+Demo pdf is in the root directory of the project.
+```
 
 ## Architecture
 
@@ -25,6 +35,46 @@ The architecture of the application follows a simple yet scalable design that se
 4. **Model**: **SentenceTransformer** (with the `multi-qa-MiniLM-L6-cos-v1` model) is used to embed the extracted text and queries into vector space for similarity search.
 5. **Vector Database**: **qDrant** is used to store the document embeddings (vectors) and perform efficient vector-based search queries.
 6. **Authentication**: API key-based authentication is implemented to secure the backend API endpoints.
+
+### Why using the current **Model**?
+
+🧠 Detailed Differences
+
+1. **all-MiniLM-L6-v2**
+
+   Architecture: MiniLM (6-layer)
+
+   Optimized for: Fast semantic similarity
+
+   Best for: Small CPU-based apps, limited memory, or simple search
+
+   Pros: Very lightweight, fast inference
+
+   Cons: Lower embedding quality on complex domains
+
+2. **all-mpnet-base-v2**
+
+   Architecture: MPNet (base)
+
+   Optimized for: High-quality general-purpose embeddings
+
+   Best for: Document chunking + retrieval, FAQ search, summarization base
+
+   Pros: Best overall performance across tasks (STS benchmark)
+
+   Cons: Larger size, slightly slower than MiniLM
+
+3. **multi-qa-mpnet-base-dot-v1**
+
+   Architecture: MPNet (base)
+
+   Fine-tuned for: Multi-lingual QA retrieval
+
+   Similarity Function: Uses dot-product instead of cosine
+
+   Pros: Works well when retrieving full answers to natural questions
+
+   Cons: Requires careful chunking and is sensitive to dot-product scale (sometimes less robust unless training conditions are matched)
 
 ## Tools & Technologies
 

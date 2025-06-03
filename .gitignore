@@ -2,5 +2,5 @@
 .venv/
 logs/
 **/__pycache__/
-
+models/
 .env
