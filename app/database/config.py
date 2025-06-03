@@ -32,4 +32,4 @@ def create_collection():
         print(f"✅ Created collection: {COLLECTION_NAME}")
 
 
-create_collection()
+# create_collection()

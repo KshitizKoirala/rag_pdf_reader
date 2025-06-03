@@ -51,6 +51,10 @@ setup_logging()
 def create_app():
     app = FastAPI(lifespan=lifespan)
 
+    @app.get("/")
+    async def root():
+        return {"message": "Hello World"}
+
     app.include_router(auth_router())
     app.include_router(pdf_router())
 

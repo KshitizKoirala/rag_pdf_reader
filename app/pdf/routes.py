@@ -9,10 +9,11 @@ pdf_service = PdfService()
 
 @router.post("/upload")
 async def upload_pdf(file: UploadFile, request: Request):
-    print("PDF Upload started")
     if not file.filename.endswith('.pdf'):
         raise HTTPException(
             status_code=400, detail="Only PDF files are supported")
+
+    print("PDF Upload started")
     content = await file.read()
     await pdf_service.process_pdf_file(content, request)
     print("PDF Upload completed")

@@ -1,6 +1,23 @@
 {
+  // Enable Pylance
+  "python.languageServer": "Pylance",
+
+  // Let Pylance suggest auto imports
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.indexing": true,
+
+  // Organize imports using Ruff (optional)
   "editor.codeActionsOnSave": {
-    "source.fixAll.ruff": "explicit"
+    "source.organizeImports": "always",
+    "source.fixAll": "always"
   },
-  "editor.formatOnSave": true
+
+  // Use Ruff as the linter
+  "python.linting.enabled": true,
+  "python.linting.ruffEnabled": true,
+
+  // Disable other linters if using Ruff
+  "python.linting.pylintEnabled": false,
+  "python.linting.flake8Enabled": false,
+  "python.linting.mypyEnabled": false
 }
