@@ -13,8 +13,7 @@ docker compose up --build
 To create a new API key you can login to the app directly and a new key will be created. Else you can use this key directly
 "nW87klK-lAD3oaAzsCxfrxs8pc4tG6nmqdQGMgPBZJM="
 
-If you want to ask questions directly
-http://localhost:8501/
+> If you want to ask questions directly -> http://localhost:8501/
 
 ## Architecture
 
