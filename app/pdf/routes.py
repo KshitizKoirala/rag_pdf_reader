@@ -22,5 +22,4 @@ async def upload_pdf(file: UploadFile, request: Request):
 
 @router.get("/ask")
 async def get_query_results(request: Request, question: str = Query(None, description="Ask Question")):
-    return await pdf_service.query_from_db(request, question)
-    # return current_user
+    return await pdf_service.augument_query_from_db(request, question)

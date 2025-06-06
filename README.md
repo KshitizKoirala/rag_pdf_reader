@@ -10,8 +10,10 @@ This application allows users to upload PDF documents, extract the text from the
 docker compose up --build
 ```
 
-To create a new API key you can login to the app directly and a new key will be created. Else you can use this key directly
-"nW87klK-lAD3oaAzsCxfrxs8pc4tG6nmqdQGMgPBZJM="
+1. Rename the .env.example to .env and add your Keys there
+
+2. To create a new API key you can login to the app directly and a new key will be created. Else you can use this key directly
+   "nW87klK-lAD3oaAzsCxfrxs8pc4tG6nmqdQGMgPBZJM="
 
 [You must remember the password for your email, as only one email can be used for an API-KEY]
 

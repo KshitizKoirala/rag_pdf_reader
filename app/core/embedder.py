@@ -10,12 +10,16 @@ cl100k_base => how transformer models like BERT, RoBERTa, and OpenAI models actu
  What is "cl100k_base" or "o200k_base" in tiktoken?
 
 These are tokenizer encodings used to simulate how models convert text into tokens. Each base refers to a different tokenization strategy:
-Encoding	Used By	                Approx. Tokens per Word	        Notes
-cl100k_base	OpenAI's GPT-4 /        ~0.75/token per word        Fast, commonly used
-            ChatGPT / 
-            text-embedding-ada-002		
-o200k_base	Used in newer OpenAI     ~0.7/token per word	    More efficient, larger vocab
-            models (like gpt-4o)	
+
+Encoding	    Used By	                Approx. Tokens per Word	        Notes
+
+cl100k_base	    OpenAI's GPT-4 /        ~0.75/token per word        Fast, commonly used
+                ChatGPT / 
+                text-embedding-ada-002		
+
+o200k_base	    Used in newer OpenAI     ~0.7/token per word	    More efficient, larger vocab
+                models (like gpt-4o)	
+                
 These encodings define how text is split into subword tokens, not full words or characters.
 """
 
@@ -65,7 +69,7 @@ def smart_chunk(
     return chunks
 
 
-def generate_embedings(request: Request, chunks: list[str]):
+def generate_embedings(request: Request, chunks: list[str]) -> list[list[float]]:
     if not hasattr(request.app.state, "model"):
         raise RuntimeError(
             "Model not loaded. Did you forget to use FastAPI lifespan?")

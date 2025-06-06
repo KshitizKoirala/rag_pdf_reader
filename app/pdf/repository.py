@@ -5,7 +5,7 @@ from ..database.config import COLLECTION_NAME, qdrant_client
 
 class PdfRepository:
 
-    async def add_embeddings(self, embeddings: list[str], texts: list[str]):
+    async def add_embeddings(self, embeddings: list[list[float]], texts: list[str]):
         points = [
             PointStruct(id=i, vector=vector, payload={"text": text})
             for i, (vector, text) in enumerate(zip(embeddings, texts, strict=False))
